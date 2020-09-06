@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const botsettings = require('../botsettings')
-const prefix = require('botsettings.prefix')
+const prefix = botsettings.prefix
 
 module.exports.run = async (bot, message, args) => {
 if(!message.content.startsWith(prefix))return;
