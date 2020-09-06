@@ -1,26 +1,30 @@
-const botsettings = require("../botsettings.json");
-const prefix = botsettings.prefix
-const Discord = module.require('discord.js');
+const botsettings = require('../botsettings');
+const Discord = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
-if(!message.content.startsWith(prefix))return;
+  let msg = message.content.split(`${botsettings.prefix}dmme`).join(" ");
 
-    let dUser = message.guild.member(message.mentions.users.first()) || message.guild.members.fetch(args[0]);	
-   if (!dUser) return message.channel.send("Can't find user!")	
-   if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("You can't use that command!")	
-   let dMessage = args.join(" ").slice(22);	
-   if(dMessage.length < 1) return message.reply('You must supply a message!')	
+  const embed = new Discord.MessageEmbed();
+  .setTitle([
+    `${message.author.tag} said:`,
+    `${msg}`
+  ])
+  .setThumbnail(message.author.avatarURL())
+  .setColor('RANDOM')
 
-      dUser.send(`${message.author} sent you: ${dMessage}`)	
+  const embed2 = new Discord.MessageEmbed();
+  .setTitle(`${message.author.tag} I sent the message. Check your DMs!`)
+  .setColor("RANDOM")
 
-      message.author.send(`${message.author} You have sent your message to ${dUser}`)	
+  message.author.send(embed)
+  message.channel.send(embed2)
+}
 
-   }
-
-   module.exports.config = {
+module.exports.config = {
     name: "dm",
-    description: "DMs a member",
+    description: "sends DM to members",
     usage: "?dm",
     accessableby: "Admins",
     aliases: []
 }
+
