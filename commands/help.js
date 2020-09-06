@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
     if(!helpArgs[0]) {
         var embed = new Discord.MessageEmbed()
             .setAuthor(`Here is the Avaible Commands to use:`)
-            .setDescription('```mute | unmute | addrole | removerole| kick | ban```')
+            .setDescription('```mute | unmute | addrole | removerole| kick | ban | memberinfo | meme | poll | clear |```')
             .addFields({ name: 'Prefix', value: '```?```', inline: true})
             .setColor('#00FFF3')
             
@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
             `)
             .setColor('#2EFF00')
 
-        message.channel.send(embed);
+        message.author.send(embed);
     }}
 }
 
